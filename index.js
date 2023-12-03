@@ -17,53 +17,23 @@ app.post('/submit', (req, res) => {
 
   info = [];
 
-  if(firstNameChecked){
-    info.push("First name: " + casual.first_name);
-  }
-  if(lastNameChecked){
-    info.push("Last name: " + casual.last_name);
-  }
-  if(namePrefixChecked){
-    info.push("Name prefix: " + casual.name_prefix);
-  }
-
-  if(addressChecked){
-    info.push("Address: " + casual.address);
-  }
-  if(cityChecked){
-    info.push("City: " + casual.city);
-  }
-
-  if(emailChecked){
-    info.push("Email: " + casual.email);
-  }
-  if(userChecked){
-    info.push("User: " + casual.username);
-  }
-  if(phoneChecked){
-    info.push("Phone: " + casual.phone);
-  }
-
-  if(birthdayChecked){
-    info.push("Birth year: " + casual.year);
-  }
-  if(colorChecked){
-    info.push("Favorite Color: " + casual.color_name);
-  }
-  if(agentChecked){
-    info.push("Agent: " + casual.user_agent);
-  }
-
+  if(firstNameChecked){info.push("First name: " + casual.first_name);}
+  if(lastNameChecked){info.push("Last name: " + casual.last_name);}
+  if(namePrefixChecked){info.push("Name prefix: " + casual.name_prefix);}
+  if(addressChecked){info.push("Address: " + casual.address);}
+  if(cityChecked){info.push("City: " + casual.city);}
+  if(emailChecked){info.push("Email: " + casual.email);}
+  if(userChecked){info.push("User: " + casual.username);}
+  if(phoneChecked){info.push("Phone: " + casual.phone);}
+  if(birthdayChecked){info.push("Birth year: " + casual.year);}
+  if(colorChecked){info.push("Favorite Color: " + casual.color_name);}
+  if(agentChecked){info.push("Agent: " + casual.user_agent);}
 
   const generatedSentence = info.join('<br>');
   console.log('Generated Sentence:', generatedSentence);
 
   res.json({ result: generatedSentence });
 });
-
-// function generateSentence(firstNameChecked, lastNameChecked, namePrefixChecked) {
-//   return casual.sentence;
-// }
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);

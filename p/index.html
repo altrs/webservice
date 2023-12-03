@@ -13,18 +13,14 @@
     <input type="checkbox" id="firstNameCheckbox" name="sockpuppet" value="name1">First Name<br>
     <input type="checkbox" id="lastNameCheckbox" name="sockpuppet" value="name2">Last Name<br>
     <input type="checkbox" id="namePrefixCheckbox" name="sockpuppet" value="namepre">Name Prefix<br>
-
     <input type="checkbox" id="addressCheckbox" name="sockpuppet" value="address">Address<br>
     <input type="checkbox" id="cityCheckbox" name="sockpuppet" value="city">City<br>
-
     <input type="checkbox" id="emailCheckbox" name="sockpuppet" value="email">Email<br>
     <input type="checkbox" id="userCheckbox" name="sockpuppet" value="username">Username<br>
     <input type="checkbox" id="phoneCheckbox" name="sockpuppet" value="phone">Phone<br>
-
     <input type="checkbox" id="birthdayCheckbox" name="sockpuppet" value="name1">Birthday<br>
     <input type="checkbox" id="colorCheckbox" name="sockpuppet" value="name2">Favorite Color<br>
     <input type="checkbox" id="agentCheckbox" name="sockpuppet" value="namepre">Agent<br>
-
     <button type="submit" id="submitBtn">Submit</button>
   </form>
 
@@ -34,27 +30,22 @@
 
     document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("myForm").addEventListener("submit", (event) => {
-        event.preventDefault(); // Prevent the default form submission behavior
+        event.preventDefault();
       });
 
       document.getElementById('submitBtn').addEventListener('click', () => {
-        // Get checkbox values or any other data you need
         var firstNameChecked = document.getElementById("firstNameCheckbox").checked;
         var lastNameChecked = document.getElementById("lastNameCheckbox").checked;
         var namePrefixChecked = document.getElementById("namePrefixCheckbox").checked;
-
         var addressChecked = document.getElementById("addressCheckbox").checked;
         var cityChecked = document.getElementById("cityCheckbox").checked;
-
         var emailChecked = document.getElementById("emailCheckbox").checked;
         var userChecked = document.getElementById("userCheckbox").checked;
         var phoneChecked = document.getElementById("phoneCheckbox").checked;
-
         var birthdayChecked = document.getElementById("birthdayCheckbox").checked;
         var colorChecked = document.getElementById("colorCheckbox").checked;
         var agentChecked = document.getElementById("agentCheckbox").checked;
 
-        // Your fetch code here
         fetch("http://localhost:3001/submit", {
           method: "POST",
           headers: {
@@ -65,7 +56,7 @@
         .then(response => response.json())
         .then(data => {
           const resultContainer = document.getElementById("result");
-          resultContainer.innerHTML = data.result; // Use innerHTML to render HTML content
+          resultContainer.innerHTML = data.result;
         })
         .catch(error => {
           console.error("Error:", error);
@@ -74,8 +65,6 @@
         });
       });
     });
-
-
     
   </script>
 
