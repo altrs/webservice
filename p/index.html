@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sock Puppet Generator</title>
+</head>
+<body>
+
+  <h3>Make Your Sock Puppet!</h3>
+
+  <form id="myForm">
+    <input type="checkbox" id="firstNameCheckbox" name="sockpuppet" value="name1">First Name<br>
+    <input type="checkbox" id="lastNameCheckbox" name="sockpuppet" value="name2">Last Name<br>
+    <input type="checkbox" id="namePrefixCheckbox" name="sockpuppet" value="namepre">Name Prefix<br>
+    <button type="submit" id="submitBtn">Submit</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("myForm").addEventListener("submit", (event) => {
+        event.preventDefault(); // Prevent the default form submission behavior
+      });
+
+      document.getElementById('submitBtn').addEventListener('click', () => {
+        // Get checkbox values or any other data you need
+        var firstNameChecked = document.getElementById("firstNameCheckbox").checked;
+        var lastNameChecked = document.getElementById("lastNameCheckbox").checked;
+        var namePrefixChecked = document.getElementById("namePrefixCheckbox").checked;
+
+        // Your fetch code here
+        fetch("http://localhost:3001/submit", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ firstNameChecked, lastNameChecked, namePrefixChecked }),
+        })
+        .then(response => response.json())
+        .then(data => {
+          const resultContainer = document.getElementById("result");
+          resultContainer.innerHTML = data.result; // Use innerHTML to render HTML content
+        })
+        .catch(error => {
+          console.error("Error:", error);
+          const resultContainer = document.getElementById("result");
+          resultContainer.textContent = "Error in submitting data.";
+        });
+      });
+    });
+
+
+    
+  </script>
+
+</body>
+</html>
