@@ -1,6 +1,9 @@
 import express from 'express';
 import casual from 'casual';
 import cors from 'cors';
+import bodyParser from 'body-parser';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
 const app = express();
 const port = process.env.PORT || 3001;
@@ -9,6 +12,15 @@ let info = [];
 
 app.use(cors());
 app.use(express.json());
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+app.use(bodyParser.json());
+app.use(express.static(join(__dirname, 'p')));
+app.get('/', (req, res) => {
+  res.sendFile(join(__dirname, 'index.html'));
+});
 
 app.post('/submit', (req, res) => {
   console.log('POST request received at /submit');
